@@ -1,0 +1,35 @@
+@page "/viewer"
+@using global::Viewer.Services
+
+@inject ForgeTokenService ForgeTokenService
+@inject IJSRuntime JS
+
+<h1>Viewer</h1>
+
+<p>This component demonstrates using the Forge Viewer.</p>
+
+@if (token == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div id="forgeViewer" style="width: 800px; height: 400px; position: relative"></div>
+}
+
+@functions {
+    public string token;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (token == null) {
+            token = await ForgeTokenService.GetForgeTokenAsync();
+            Console.WriteLine(token);
+            ValueTask t = JS.InvokeVoidAsync(
+                "launchViewer", 
+                "dXJu..", // file urn
+                token
+            );
+        } 
+    }
+}
