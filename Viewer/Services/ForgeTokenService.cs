@@ -1,23 +1,33 @@
+using Newtonsoft.Json;
+using Viewer.Configuration;
+
 namespace Viewer.Services;
 
-public class ForgeTokenService
+public class ForgeTokenService(AuthConfig config, IHttpClientFactory factory) : IForgeTokenService
 {
-    public async Task<string> GetForgeTokenAsync()
+    public async Task<string?> GetForgeToken()
     {
-        var dict = new Dictionary<string, string>();
-        dict.Add("client_id", "<client id>");
-        dict.Add("client_secret", "<client secret>");
-        dict.Add("grant_type", "client_credentials");
-        dict.Add("scope", "viewables:read");
-        var response =
-            await new HttpClient()
-                .PostAsync("https://developer.api.autodesk.com/authentication/v2/token",
-                    new FormUrlEncodedContent(dict));
-        // var token = await response.Content.re<TokenResponse>();
+        var dict = new Dictionary<string, string>
+        {
+            { "client_id", config.ClientId },
+            { "client_secret", config.ClientSecret },
+            { "grant_type", "client_credentials" },
+            { "scope", "viewables:read" }
+        };
 
-        // return token.access_token;
-        
-        return string.Empty;
+        using var httpClient = factory.CreateClient(nameof(ForgeTokenService));
+        using var response = await httpClient.PostAsync(
+            "/authentication/v2/token", new FormUrlEncodedContent(dict));
+        await using var responseStream = await response.Content.ReadAsStreamAsync();
+        using var streamReader = new StreamReader(responseStream);
+        await using var jsonTextReader = new JsonTextReader(streamReader);
+        if (responseStream.Length > 0)
+        {
+            var tokenResponse = JsonSerializer.CreateDefault().Deserialize<TokenResponse>(jsonTextReader);
+            return tokenResponse?.access_token;
+        }
+
+        return default;
     }
 }
 
