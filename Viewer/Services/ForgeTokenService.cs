@@ -1,3 +1,4 @@
+using System.Text;
 using Newtonsoft.Json;
 using Viewer.Configuration;
 
@@ -9,13 +10,14 @@ public class ForgeTokenService(AuthConfig config, IHttpClientFactory factory) : 
     {
         var dict = new Dictionary<string, string>
         {
-            { "client_id", config.ClientId },
-            { "client_secret", config.ClientSecret },
             { "grant_type", "client_credentials" },
-            { "scope", "viewables:read" }
+            { "scope", "code:all data:write data:read bucket:create bucket:delete bucket:read" }
         };
 
+        var base64Credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{config.ClientId}:{config.ClientSecret}"));
+
         using var httpClient = factory.CreateClient(nameof(ForgeTokenService));
+        httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", base64Credentials);
         using var response = await httpClient.PostAsync(
             "/authentication/v2/token", new FormUrlEncodedContent(dict));
         await using var responseStream = await response.Content.ReadAsStreamAsync();
