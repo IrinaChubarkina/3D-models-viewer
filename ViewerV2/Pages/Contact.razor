@@ -1,7 +1,167 @@
 @page "/contact"
+@inherits LayoutComponentBase
 
-<h1>Contact information</h1>
+<div class="contact-container">
+    <h2>Contact Me</h2>
+    
+    <div class="contact-content">
+        <!-- Contact Form Section -->
+        <div class="contact-form-section">
+            <form class="contact-form" @onsubmit="HandleSubmit">
+                <h3>Send a Message</h3>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" @bind="name" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" @bind="email" required />
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" @bind="message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <!-- Contact Details Section -->
+        <div class="contact-details-section">
+            <h3>Contact Information</h3>
+            <div class="contact-item">
+                <i class="fab fa-telegram"></i>
+                <p>Telegram: <a href="https://t.me/yourusername" target="_blank">@@dimitris</a></p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <p>Phone: <a href="tel:+1234567890">+123 456 7890</a></p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <p>Address: Your City, Your Country</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-globe"></i>
+                <p>Website: <a href="https://yourwebsite.com" target="_blank">yourwebsite.com</a></p>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">Your Profile</a></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 @code {
-    
+    private string name;
+    private string email;
+    private string message;
+
+    private void HandleSubmit()
+    {
+        // Handle form submission (e.g., send email, display confirmation, etc.)
+        Console.WriteLine($"Name: {name}, Email: {email}, Message: {message}");
+        // Reset form fields if needed
+        name = string.Empty;
+        email = string.Empty;
+        message = string.Empty;
+    }
 }
+
+<style>
+    .contact-container {
+        max-width: 800px;
+        margin: 2em auto;
+        padding: 2em;
+        background-color: #333;
+        color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+        text-align: center;
+        color: #ffcc00;
+    }
+
+    .contact-content {
+        display: flex;
+        justify-content: space-between; /* Align form and contact details */
+        gap: 2em; /* Add space between form and contact details */
+    }
+
+    .contact-form-section {
+        flex: 1;
+        background-color: #444; /* Dark background for the form */
+        padding: 1.5em;
+        border-radius: 8px;
+    }
+
+    .contact-details-section {
+        width: 300px; /* Fixed width for contact details */
+        background-color: #f0f0f0; /* Light gray background */
+        padding: 1.5em;
+        border-radius: 8px;
+        color: #333; /* Dark text color for readability */
+    }
+
+    .contact-item {
+        margin: 1em 0;
+        display: flex;
+        align-items: center; /* Center icons vertically with text */
+    }
+
+    .contact-item i {
+        font-size: 1.5em;
+        color: #ffcc00; /* Yellow icon color */
+        margin-right: 0.5em; /* Space between icon and text */
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 0.5em;
+        font-weight: bold;
+    }
+
+    input, textarea {
+        padding: 0.5em;
+        border: 1px solid #555;
+        border-radius: 4px;
+        background-color: #444;
+        color: #fff;
+    }
+
+    input:focus, textarea:focus {
+        border-color: #ffcc00; /* Highlight border on focus */
+        outline: none; /* Remove default outline */
+    }
+
+    button {
+        padding: 0.75em;
+        background-color: #ffcc00;
+        color: #222;
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #e6b800; /* Darker yellow on hover */
+    }
+</style>

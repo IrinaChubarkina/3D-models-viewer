@@ -1,5 +1,4 @@
 @page "/3d-models"
-@page "/"
 
 @using ViewerV2.Services
 
@@ -25,14 +24,13 @@
 </div>
 
 @functions {
-    public string? token;
+    private string? token;
 
     protected override async Task OnInitializedAsync()
     {
         if (token == null)
         {
             token = await ForgeTokenService.GetForgeToken();
-            Console.WriteLine(token);
             JS.InvokeVoidAsync(
                 "launchViewer",
                 "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6aXJpbmFfY2h1XzcvU3VzcGVuc2lvbi56aXA",
