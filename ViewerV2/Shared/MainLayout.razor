@@ -4,13 +4,8 @@
 <PageTitle>Dimitris Kalapodas</PageTitle>
 
 <div class="page">
-    @* <div class="sidebar"> *@
-    @*     <NavMenu/> *@
-    @* </div> *@
-
-    <!-- Navbar -->
     <nav class="navbar">
-        <div class="navbar-logo">DIMITRIS KALAPODAS</div>
+        <div @onclick='() => NavigationManager.NavigateTo("/")' class="navbar-logo">DIMITRIS KALAPODAS</div>
         <div class="navbar-links">
             <a href="/" class="@IsActive("")">Home</a>
             <a href="/about-me" class="@IsActive("about-me")">About</a>
@@ -22,7 +17,7 @@
     </nav>
     
     <div class="content-wrapper">
-        @Body <!-- This renders the Blazor page content -->
+        @Body
     </div>
 </div>
 
@@ -30,7 +25,6 @@
 
     private string IsActive(string page)
     {
-        // Logic to check the current page
         var currentPage = NavigationManager.ToAbsoluteUri(NavigationManager.Uri).ToString().Split('/').Last();
         return currentPage.Equals(page, StringComparison.OrdinalIgnoreCase) ? "active" : "";
     }

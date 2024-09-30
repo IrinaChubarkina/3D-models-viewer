@@ -72,6 +72,7 @@ html, body {
     align-items: center;
 }
 
+
 /* Styling for the fixed navbar */
 .navbar {
     background-color: #111; /* Slightly lighter black for contrast */
@@ -92,6 +93,11 @@ html, body {
     font-size: 1.5em;
     font-weight: bold;
     margin-left: 40px;
+    cursor: pointer;
+}
+
+.navbar-logo:hover {
+    color: #ffcc00; /* Yellow text color on hover */
 }
 
 .navbar-links a {
