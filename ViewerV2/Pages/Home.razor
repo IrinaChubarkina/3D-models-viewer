@@ -2,13 +2,11 @@
 @inherits LayoutComponentBase
 
 <div class="home-container">
-    
     <div class="home-image">
-        <img src="r001-026.png" alt="Dimitris" />
+        <img src="r001-026 copy.png" alt="Dima Petrov" />
     </div>
     
     <div class="home-content">
-        <h3>Hello!</h3>
         <h2>I'm <span class="highlight">Dimitris Kalapodas</span></h2>
         <h3>A Freelance Design Engineer based in Greece</h3>
 
@@ -17,54 +15,62 @@
             <a href="/contact" class="btn btn-outline">Contact Me</a>
         </div>
     </div>
-
 </div>
 
 <style>
-    /* Main Container */
     .home-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         height: 100vh;
         padding: 2em;
-        background-color: inherit; /* Same as body background */
+        background-color: inherit;
         color: #fff;
     }
 
-    /* Content section */
+    .home-image {
+        flex: 1;
+        text-align: left;
+    }
+
+    .home-image img {
+        width: 100%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        background-color: transparent;
+    }
+
     .home-content {
         flex: 1;
         text-align: right;
     }
 
     h1 {
-        font-size: 3em; /* Smaller Hello! */
-        font-weight: 400; /* Less bold */
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Even, modern font */
+        font-size: 3em;
+        font-weight: 400;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
     }
 
     h2 {
-        font-size: 4.5em; /* Bigger for "I'm Dima Petrov" */
-        font-weight: 700; /* Thicker letters for a more designed look */
+        font-size: 4.5em;
+        font-weight: 700;
         margin: 0.5em 0;
     }
 
     h3 {
         font-size: 2em;
         margin: 0.5em 0 2em 0;
-        color: #ccc; /* Lighter gray for subtitle */
+        color: #ccc;
     }
 
     .highlight {
-        color: #ffcc00; /* Yellow highlight for "Dima Petrov" */
+        color: #ffcc00;
     }
 
-    /* Button styles */
     .home-links {
         display: flex;
         gap: 1.5em;
+        justify-content: flex-end;
     }
 
     .btn {
@@ -78,11 +84,10 @@
     }
 
     .btn:hover {
-        background-color: #e6b800; /* Darker yellow on hover */
+        background-color: #e6b800;
         transform: scale(1.05);
     }
 
-    /* Transparent, outlined button for "Contact Me" */
     .btn-outline {
         background-color: transparent;
         color: #fff;
@@ -95,26 +100,19 @@
         transform: scale(1.05);
     }
 
-    /* Image section */
-    .home-image {
-        flex: 1;
-        text-align: left;
-    }
-
-    .home-image img {
-        max-width: 400px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Responsive for smaller screens */
     @@media (max-width: 768px) {
         .home-container {
             flex-direction: column;
             text-align: center;
         }
 
+        .home-content {
+            text-align: center;
+        }
+
         .home-image {
-            margin-top: 2em;
+            margin-bottom: 2em;
+            text-align: center;
         }
 
         .home-image img {
