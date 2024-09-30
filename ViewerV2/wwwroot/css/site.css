@@ -1,9 +1,5 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
 h1:focus {
     outline: none;
 }
@@ -62,3 +58,108 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #1a1a1a; /* Dark background for the entire layout */
+    color: #111; /* White text for contrast */
+    scroll-behavior: smooth; /* Smooth scrolling between sections */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling for the fixed navbar */
+.navbar {
+    background-color: #111; /* Slightly lighter black for contrast */
+    color: #fff;
+    padding: 1em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000; /* Ensure the navbar stays on top */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Slight shadow for depth */
+}
+
+.navbar-logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.1em;
+    transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+    color: #ffcc00; /* Highlight effect when hovering */
+}
+
+/* Main content styling */
+/*.content-wrapper {*/
+/*    margin-top: 80px; !* Ensure content starts below the navbar *!*/
+/*}*/
+
+.content-wrapper {
+    margin-top: 60px;           /* Add a top margin equal to the navbar height */
+    padding: 20px;              /* General padding for the content */
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.section {
+    padding: 100px 20px;
+    min-height: 100vh; /* Full-screen height for each section */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid #333; /* Divider between sections */
+}
+
+/* Section-specific background colors */
+#home {
+    background: #1a1a1a; /* Dark gray background for home section */
+}
+
+#about {
+    background: #1f1f1f; /* Slightly different shade for about section */
+}
+
+#services {
+    background: #242424;
+}
+
+#contact {
+    background: #292929;
+}
+
+#models-container {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+
+/* Footer styling */
+footer {
+    background-color: #222;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #333;
+}
+
+footer p {
+    margin: 0;
+    color: #bbb;
+}

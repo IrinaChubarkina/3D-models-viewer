@@ -1,19 +1,25 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>ViewerV2</PageTitle>
+<PageTitle>Dimitris Kalapodas</PageTitle>
 
 <div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
+    @* <div class="sidebar"> *@
+    @*     <NavMenu/> *@
+    @* </div> *@
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">DIMITRIS KALAPODAS</div>
+        <div class="navbar-links">
+            <a href="/">Home</a>
+            <a href="/about-me">About</a>
+            <a href="/3d-models">3D designs</a>
+            <a href="/diy">DIY projects</a>
+            <a href="/contact">Contact</a>
         </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+    </nav>
+    
+    <div class="content-wrapper">
+        @Body <!-- This renders the Blazor page content -->
+    </div>
 </div>
