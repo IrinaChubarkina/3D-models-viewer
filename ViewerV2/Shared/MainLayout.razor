@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager;
 
 <PageTitle>Dimitris Kalapodas</PageTitle>
 
@@ -11,11 +12,11 @@
     <nav class="navbar">
         <div class="navbar-logo">DIMITRIS KALAPODAS</div>
         <div class="navbar-links">
-            <a href="/">Home</a>
-            <a href="/about-me">About</a>
-            <a href="/3d-models">3D designs</a>
-            <a href="/diy">DIY projects</a>
-            <a href="/contact">Contact</a>
+            <a href="/" class="@IsActive("")">Home</a>
+            <a href="/about-me" class="@IsActive("about-me")">About</a>
+            <a href="/3d-models" class="@IsActive("3d-models")">3D designs</a>
+            <a href="/diy" class="@IsActive("diy")">DIY projects</a>
+            <a href="/contact" class="@IsActive("contact")">Contact</a>
         </div>
     </nav>
     
@@ -23,3 +24,14 @@
         @Body <!-- This renders the Blazor page content -->
     </div>
 </div>
+
+@code {
+
+    private string IsActive(string page)
+    {
+        // Logic to check the current page
+        var currentPage = NavigationManager.ToAbsoluteUri(NavigationManager.Uri).ToString().Split('/').Last();
+        return currentPage.Equals(page, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+    }
+
+}

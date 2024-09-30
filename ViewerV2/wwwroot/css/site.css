@@ -94,21 +94,46 @@ html, body {
 }
 
 .navbar-links a {
-    color: #fff;
-    text-decoration: none;
+    color: #fff; /* Default link color */
+    text-decoration: none; /* Remove default underline */
     margin: 0 15px;
     font-size: 1.1em;
-    transition: color 0.3s;
+    font-weight: 600;
+    position: relative; /* Required for the pseudo-element positioning */
+    display: inline-block;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.navbar-links a::after {
+    content: ''; /* Pseudo-element with no text content */
+    position: absolute;
+    left: 50%; /* Centered */
+    bottom: -5px; /* Adjust this based on how far below the text the underline should be */
+    width: 0; /* Start with 0 width */
+    height: 2px; /* Height of the underline */
+    background-color: #ffcc00; /* Yellow color for underline */
+    transition: width 0.3s ease, left 0.3s ease; /* Smooth width and left transition */
+    transform: translateX(-50%); /* Shift to center since left is at 50% */
 }
 
 .navbar-links a:hover {
-    color: #ffcc00; /* Highlight effect when hovering */
+    color: #ffcc00; /* Yellow text color on hover */
 }
 
-/* Main content styling */
-/*.content-wrapper {*/
-/*    margin-top: 80px; !* Ensure content starts below the navbar *!*/
-/*}*/
+.navbar-links a:hover::after {
+    width: 100%; /* Expand underline to full width on hover */
+    left: 50%; /* Keep the left position at center */
+}
+
+.navbar-links a.active {
+    color: #ffcc00; /* Yellow text color */
+}
+
+.navbar-links a.active::after {
+    width: 100%; /* Underline full width */
+    left: 50%; /* Centered under the text */
+    transform: translateX(-50%); /* Shift to center since left is at 50% */
+}
 
 .content-wrapper {
     margin-top: 60px;           /* Add a top margin equal to the navbar height */
