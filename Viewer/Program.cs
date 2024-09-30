@@ -1,3 +1,4 @@
+using Blazorise;
 using Viewer;
 using Viewer.Components;
 
@@ -7,6 +8,10 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddServices(builder.Configuration);
+builder.Services.AddBlazorise(opt =>
+{
+    opt.Immediate = true;
+});
 
 var app = builder.Build();
 

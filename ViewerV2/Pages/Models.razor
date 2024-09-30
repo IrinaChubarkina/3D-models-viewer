@@ -1,0 +1,35 @@
+@page "/3d-models"
+@using ViewerV2.Services
+
+@inject IForgeTokenService ForgeTokenService
+@inject IJSRuntime JS
+
+<h1>Viewer</h1>
+
+<p>This component demonstrates using the Forge Viewer in a Blazor Server project.</p>
+
+@if (token is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div id="forgeViewer" style="width: 800px; height: 400px; position: relative"></div>
+}
+
+@functions {
+    public string? token;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (token == null) {
+            token = await ForgeTokenService.GetForgeToken();
+            Console.WriteLine(token);
+            JS.InvokeVoidAsync(
+                "launchViewer", 
+                "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6aXJpbmFfY2h1XzcvU3VzcGVuc2lvbi56aXA", 
+                token
+            );
+        } 
+    }
+}

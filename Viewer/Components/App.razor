@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css" type="text/css">
     <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
 
+    @* <script src="js/viewer.js"></script> *@
     
     <HeadOutlet/>
 
@@ -27,11 +28,99 @@
                 background-color: #F0F8FF;
             }
     </style>
+    
+    <script>
+          window.jsMethod = (methodParameter) => {
+            console.log('hello world');
+          };
+        </script>
+    
 </head>
 
 <body>
 <Routes/>
 <script src="_framework/blazor.web.js"></script>
+<script>
+        var viewer;
+        var md_ViewerDocument;
+        var md_viewables;
+
+        var inputs = document.querySelectorAll('input');
+
+        function DisplayViewer() {
+
+            var options = {
+                env: 'AutodeskProduction2',
+                api: 'streamingV2_EU', // for models uploadeded to EMEA change this option to 'streamingV2_EU'
+                getAccessToken: function(onTokenReady) {
+                    var token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IlhrUFpfSmhoXzlTYzNZS01oRERBZFBWeFowOF9SUzI1NiIsInBpLmF0bSI6ImFzc2MifQ.eyJzY29wZSI6WyJjb2RlOmFsbCIsImRhdGE6d3JpdGUiLCJkYXRhOnJlYWQiLCJidWNrZXQ6Y3JlYXRlIiwiYnVja2V0OmRlbGV0ZSIsImJ1Y2tldDpyZWFkIl0sImNsaWVudF9pZCI6Ilp4WjBreGt1TzllTzV0bEFWVUdaM2JZdGM1WVg1MThiVGJtN2JhdEQ5blVPdDlHRSIsImlzcyI6Imh0dHBzOi8vZGV2ZWxvcGVyLmFwaS5hdXRvZGVzay5jb20iLCJhdWQiOiJodHRwczovL2F1dG9kZXNrLmNvbSIsImp0aSI6Im5ubFFmbWg5NlV3SWZPeDNBMnVuaWQxQTNTQXA2NDJOb2dpNU1FbzNiTnVWSHRkVDRvTkVYR0dUUHFPN1J5SkUiLCJleHAiOjE3Mjc2NTAwMTh9.J0mR-upr1EfPwFf05k1cNAjTDG7-iQHUgHVON8P1X3AW5HzLOPL3C-HVQ37S31v9wzR3zRWNwzwvvtLW-wLIf7UJEk5WJL0QjePGOm4oTs71az3PJHs1bfHCo18PoKFseoscM3rCUloh4fRycMyySWiSZZBE2VI709rLakT572PHOBDQjWZEC9mOFfL197iOGaTk66J_NpDmu7CTg8IRTXOCFRNOlIlQC0A_nE45qx6bs4XQHJHXrfuqn8xt5xdU_6-14n_eGJKV07gcyEmVswRVeMNBq-G3r1DLx3lADIL44s3bL2YTUFMin_0bI09-uEKR8lQkHxc-M2FmE-Ky6Q";
+                    var timeInSeconds = 3600; // Use value provided by Authentication (OAuth) API
+                    onTokenReady(token, timeInSeconds);
+                }
+            }
+
+            Autodesk.Viewing.Initializer(options, function() {
+
+                var htmlDiv = document.getElementById('forgeViewer');
+                viewer = new Autodesk.Viewing.GuiViewer3D(htmlDiv);
+                var startedCode = viewer.start();
+
+                if (startedCode > 0) {
+                    console.error('Failed to create a Viewer: WebGL not supported.');
+                    return;
+                }
+
+                console.log('Initialization complete, loading a model next...');
+
+            });
+
+            var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6aXJpbmFfY2h1XzcvU3VzcGVuc2lvbi56aXA'; // Add the string 'urn:' to the actual URN value
+            Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
+        };
+
+        function selectViewable() {
+
+            var indexViewable = document.getElementById("viewables").selectedIndex;
+            // Load another viewable from selectedIndex of drop-down.
+            viewer.loadDocumentNode(md_ViewerDocument, md_viewables[indexViewable]);
+        }
+
+        function onDocumentLoadSuccess(viewerDocument) {
+
+            var viewerapp = viewerDocument.getRoot();
+
+            md_ViewerDocument=viewerDocument; // Hold the viewerDocument in a global variable so that we can access it within SelectViewable()
+            md_viewables = viewerapp.search({'type':'geometry'});
+
+            if (md_viewables.length === 0) {
+                console.error('Document contains no viewables.');
+                return;
+            }
+
+            // populate the Choose viewables drop down with the viewable name
+            var sel = document.getElementById('viewables');
+            for(var i = 0; i < md_viewables.length; i++) {
+                var opt = document.createElement('option');
+                opt.innerHTML = md_viewables[i].data.name;
+                opt.value =  md_viewables[i].data.name;
+
+                sel.appendChild(opt);
+            }
+
+            viewer.loadDocumentNode(viewerDocument, md_viewables[0]);
+
+            if (md_viewables.length > 1) {
+                var viewablesDIV= document.getElementById("viewables_dropdown");
+                viewablesDIV.style.display = "block";
+
+            }
+
+        }
+
+        function onDocumentLoadFailure() {
+            console.error('Failed fetching manifest');
+        }
+    </script>
 </body>
 
 </html>

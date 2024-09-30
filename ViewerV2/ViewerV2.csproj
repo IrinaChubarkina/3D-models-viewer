@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <UserSecretsId>7358da6c-ce32-426c-8c19-fc179f8b9a81</UserSecretsId>
+        <UserSecretsId>c0dd00c5-517f-4f30-94df-348a5a6bf381</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,8 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Blazorise" Version="1.6.1" />
-      <PackageReference Include="Blazorise.Components" Version="1.6.1" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 

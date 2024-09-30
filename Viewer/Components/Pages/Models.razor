@@ -18,18 +18,35 @@ else
     <div id="forgeViewer" style="width: 800px; height: 400px; position: relative"></div>
 }
 
+@* <button onclick="@(LoadViewer)">Load</button> *@
+
 @functions {
     public string? token;
 
     protected override async Task OnInitializedAsync()
     {
+        // await JS.InvokeVoidAsync("alert", "Hello world");
         if (token is null) {
             token = await ForgeTokenService.GetForgeToken();
-            ValueTask t = JS.InvokeVoidAsync(
+            Console.WriteLine(token);
+            JS.InvokeVoidAsync(
                 "launchViewer", 
-                "dXJu..", // file urn
+                "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6aXJpbmFfY2h1XzcvU3VzcGVuc2lvbi56aXA",
+                // "DisplayViewer"
                 token
             );
-        } 
+        }  
+        // base.OnAfterRenderAsync()
+    }
+
+    private async Task LoadViewer()
+    {
+        await JS.InvokeVoidAsync(
+            // "launchViewer", 
+            // "dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6aXJpbmFfY2h1XzcvU3VzcGVuc2lvbi56aXA",
+            "DisplayViewer"
+            // token
+        ); 
     }
 }
+
