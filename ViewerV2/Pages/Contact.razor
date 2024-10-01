@@ -3,58 +3,73 @@
 
 
 <div class="contact-container">
-    <img src="mem-face-left.png" alt="Mirrored Shape Image" class="left-side-image">
+    <div>
 
-    <!-- Contact Form Section -->
-    <div class="contact-form-section">
-        <form class="contact-form" @onsubmit="HandleSubmit">
-            <h3>Send a Message</h3>
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" @bind="name" required/>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" @bind="email" required/>
-            </div>
-            <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea id="message" @bind="message" required></textarea>
-            </div>
-            <button type="submit">Send Message</button>
-        </form>
+        <img src="mem-face-left.png" alt="Mirrored Shape Image" class="left-side-image">
+
+        <div class="contact-form-section">
+            <form class="contact-form" @onsubmit="HandleSubmit">
+                <h3>Send a Message</h3>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" @bind="name" required/>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" @bind="email" required/>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" @bind="message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
     </div>
 
-    <div class="contact-details-section">
-        <h3>Contact Information</h3>
-        <div class="contact-item">
-            <i class="fab fa-telegram"></i>
-            <p>Telegram: <a href="https://t.me/yourusername" target="_blank">@@dimitris</a></p>
+    <div>
+        <div class="contact-details-section">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <h5>Phone</h5>
+                <p><a style="width: max-content" href="tel:+30 690 8644950">+30 690 8644950</a></p>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <h5>Email</h5>
+                <p><a href="mailto:kalapodas@hotmail.com">kalapodas@hotmail.com</a></p>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <h5>Address</h5>
+                <p>34001&nbsp;Karystos,&nbsp;Greece</p>
+            </div>
+
+
+            <div class="contact-item">
+                <i class="fas fa-globe"></i>
+                <h5>Website</h5>
+                <p> <a href="https://kalapodas.com" target="_blank">kalapodas.com</a></p>
+            </div>
+
+            <div class="contact-item">
+                <i class="fab fa-linkedin"></i>
+                <h5>LinkedIn</h5>
+                <p><a href="https://www.linkedin.com/in/dimitris-kalapodas-76a322187" target="_blank">Link</a></p>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fab fa-telegram"></i>
+                <h5>Telegram</h5>
+                <p><a href="https://t.me/YinYang2247" target="_blank">Link</a></p>
+            </div>
         </div>
-        <div class="contact-item">
-            <i class="fas fa-phone"></i>
-            <p>Phone: <a href="tel:+1234567890">+30 690 8644950</a></p>
-        </div>
-        <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <p>Address: 34001 Karystos, Greece</p>
-        </div>
-        <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <p>Email: <a href="mailto:your-email@example.com">kalapodas@hotmail.com</a></p>
-        </div>
-        <div class="contact-item">
-            <i class="fas fa-globe"></i>
-            <p>Website: <a href="https://kalapodasportfolio.com" target="_blank">kalapodasportfolio.com</a></p>
-        </div>
-        <div class="contact-item">
-            <i class="fab fa-linkedin"></i>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/dimitris-kalapodas-76a322187" target="_blank">Link</a></p>
-        </div>
+
+        <img src="mem-face.png" alt="Shape Image" class="bottom-right-image">
     </div>
-    
-    <img src="mem-face.png" alt="Shape Image" class="bottom-right-image">
-    
+
 
 </div>
 
@@ -66,9 +81,7 @@
 
     private void HandleSubmit()
     {
-        // Handle form submission (e.g., send email, display confirmation, etc.)
         Console.WriteLine($"Name: {name}, Email: {email}, Message: {message}");
-        // Reset form fields if needed
         name = string.Empty;
         email = string.Empty;
         message = string.Empty;
@@ -92,37 +105,55 @@
         color: #ffcc00;
     }
 
-    .contact-content {
-        display: flex;
-        justify-content: space-between; /* Align form and contact details */
-        gap: 2em; /* Add space between form and contact details */
+    p {
+        width: max-content;
     }
-
+    
     .contact-form-section {
         flex: 1;
-        max-width: 50%;
+        max-width: 60%;
         margin-top: 4rem;
         margin-left: auto;
-        background-color: #444; /* Dark background for the form */
+        background-color: #444;
         padding: 1.5em;
         border-radius: 8px;
     }
 
     .contact-details-section {
-        width: 300px;
-        background-color: inherit;
-        padding: 1.5em;
-        /*border-radius: 8px;*/
-        color: #fff;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2em;
+        align-items: center;
+        justify-items: center;
+        min-height: 100vh;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    
+    .contact-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        border-radius: 8px;
+        transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
+    .contact-item i {
+        font-size: 2.3em;
+        color: #ffcc00;
+        margin-bottom: 0.5em;
+    }
+    
     .bottom-right-image {
         position: absolute;
         right: 0;
         bottom: 0;
-        width: 400px;
+        width: 32em;
         height: auto;
     }
+
     
     .left-side-image {
         position: absolute;
@@ -132,21 +163,6 @@
         height: auto;
     }
 
-    .contact-item {
-        margin: 0.1em 0;
-        display: flex;
-        align-items: center; /* Center icons vertically with text */
-    }
-
-    .contact-item i {
-        font-size: 1.5em;
-        color: #ffcc00; /* Yellow icon color */
-        margin-right: 0.5em; /* Space between icon and text */
-    }
-
-    .contact-item a {
-        color: #ffcc00;
-    }
     .contact-form {
         display: flex;
         flex-direction: column;
@@ -172,8 +188,8 @@
     }
 
     input:focus, textarea:focus {
-        border-color: #ffcc00; /* Highlight border on focus */
-        outline: none; /* Remove default outline */
+        border-color: #ffcc00;
+        outline: none;
     }
 
     button {
@@ -188,6 +204,14 @@
     }
 
     button:hover {
-        background-color: #e6b800; /* Darker yellow on hover */
+        background-color: #e6b800;
+    }
+    
+    a {
+        color:  #e6b800;;
+    }
+    
+    a:hover {
+        color: #d49400;
     }
 </style>
