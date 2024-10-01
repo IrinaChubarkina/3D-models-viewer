@@ -1,0 +1,153 @@
+@page "/resume"
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager;
+
+<div class="resume-page">
+    <!-- Summary Section -->
+    <section class="summary-section">
+        <h2>Summary</h2>
+        <p>
+            I am a passionate and experienced freelance 3D Design Engineer with a strong background in product design, 
+            CAD modeling, and engineering solutions. Skilled in working with leading design software and delivering 
+            innovative design solutions for various industries.
+        </p>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section class="work-experience-section">
+        <h2>Work Experience</h2>
+
+        <div class="experience-item">
+            <h3>Freelance 3D Design Engineer</h3>
+            <p><strong>Company:</strong> Independent Contractor</p>
+            <p><strong>Duration:</strong> Jan 2020 – Present</p>
+            <p>
+                Provided freelance 3D design services to various clients, focusing on CAD modeling, 
+                product visualization, and engineering designs for manufacturing. 
+                Expertise in CATIA V5, SolidWorks, and AutoCAD.
+            </p>
+        </div>
+
+        <div class="experience-item">
+            <h3>Design Engineering Intern</h3>
+            <p><strong>Company:</strong> XYZ Engineering Ltd.</p>
+            <p><strong>Duration:</strong> Jun 2019 – Dec 2019</p>
+            <p>
+                Assisted senior engineers in design projects, creating CAD models, technical drawings, 
+                and conducting research for new product designs using CATIA V5 and SolidWorks.
+            </p>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section">
+        <h2>Education</h2>
+
+        <div class="education-item">
+            <h3>Master of Science in Mechanical Engineering</h3>
+            <p><strong>University:</strong> University of Engineering, Greece</p>
+            <p><strong>Duration:</strong> 2018 – 2020</p>
+        </div>
+
+        <div class="education-item">
+            <h3>Bachelor of Science in Mechanical Engineering</h3>
+            <p><strong>University:</strong> University of Engineering, Greece</p>
+            <p><strong>Duration:</strong> 2014 – 2018</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+        <h2>Skills</h2>
+
+        <ul class="skills-list">
+            <li>CATIA V5</li>
+            <li>SolidWorks</li>
+            <li>AutoCAD</li>
+            <li>3D Product Visualization</li>
+            <li>Finite Element Analysis (FEA)</li>
+        </ul>
+    </section>
+
+    <!-- Download CV Button -->
+    <section class="download-cv-section">
+        <button class="download-btn" @onclick="DownloadCV">Download CV (PDF)</button>
+    </section>
+</div>
+
+@code {
+    private void DownloadCV()
+    {
+        var filePath = "wwwroot/files/DimaPetrov_CV.pdf"; // Ensure your PDF is in wwwroot/files
+        var fileUrl = NavigationManager.ToAbsoluteUri(filePath).ToString();
+        NavigationManager.NavigateTo(fileUrl, true);
+    }
+}
+
+<style>
+/* Styling for the Resume Page */
+.resume-page {
+    max-width: 900px;
+    margin: 3em auto;
+    padding: 2em;
+    background-color: #333;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* General Section Styling */
+section {
+    margin-bottom: 2em;
+}
+
+h2 {
+    color: #ffcc00;
+    margin-bottom: 1em;
+}
+
+/* Work Experience and Education Items */
+.experience-item, .education-item {
+    margin-bottom: 1.5em;
+}
+
+h3 {
+    color: #e6b800;
+    margin-bottom: 0.5em;
+}
+
+/* Skills Section */
+.skills-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+}
+
+.skills-list li {
+    background-color: #444;
+    color: #ffcc00;
+    padding: 0.75em 1.5em;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 2px solid #ffcc00;
+}
+
+/* Download CV Button */
+.download-btn {
+    padding: 1em 2em;
+    background-color: transparent;
+    color: #ffcc00;
+    border: 2px solid #ffcc00;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #ffcc00;
+    color: #333;
+}
+</style>
