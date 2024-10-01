@@ -25,7 +25,6 @@ function onDocumentLoadSuccess(doc) {
   );
   viewer.start();
   viewer.loadDocumentNode(doc, viewables).then((i) => {
-    // documented loaded, any action?
   });
 }
 
