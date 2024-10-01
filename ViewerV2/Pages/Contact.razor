@@ -1,60 +1,63 @@
 @page "/contact"
 @inherits LayoutComponentBase
 
-<div class="contact-container">
-    <h2>Contact Me</h2>
-    
-    <div class="contact-content">
-        <!-- Contact Form Section -->
-        <div class="contact-form-section">
-            <form class="contact-form" @onsubmit="HandleSubmit">
-                <h3>Send a Message</h3>
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" @bind="name" required />
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" @bind="email" required />
-                </div>
-                <div class="form-group">
-                    <label for="message">Message:</label>
-                    <textarea id="message" @bind="message" required></textarea>
-                </div>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
 
-        <!-- Contact Details Section -->
-        <div class="contact-details-section">
-            <h3>Contact Information</h3>
-            <div class="contact-item">
-                <i class="fab fa-telegram"></i>
-                <p>Telegram: <a href="https://t.me/yourusername" target="_blank">@@dimitris</a></p>
+<div class="contact-container">
+    <img src="mem-face-left.png" alt="Mirrored Shape Image" class="left-side-image">
+
+    <!-- Contact Form Section -->
+    <div class="contact-form-section">
+        <form class="contact-form" @onsubmit="HandleSubmit">
+            <h3>Send a Message</h3>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" @bind="name" required/>
             </div>
-            <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <p>Phone: <a href="tel:+1234567890">+123 456 7890</a></p>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" @bind="email" required/>
             </div>
-            <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <p>Address: Your City, Your Country</p>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" @bind="message" required></textarea>
             </div>
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <p>Email: <a href="mailto:your-email@example.com">your-email@example.com</a></p>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-globe"></i>
-                <p>Website: <a href="https://yourwebsite.com" target="_blank">yourwebsite.com</a></p>
-            </div>
-            <div class="contact-item">
-                <i class="fab fa-linkedin"></i>
-                <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">Your Profile</a></p>
-            </div>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <div class="contact-details-section">
+        <h3>Contact Information</h3>
+        <div class="contact-item">
+            <i class="fab fa-telegram"></i>
+            <p>Telegram: <a href="https://t.me/yourusername" target="_blank">@@dimitris</a></p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <p>Phone: <a href="tel:+1234567890">+30 690 8644950</a></p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>Address: 34001 Karystos, Greece</p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <p>Email: <a href="mailto:your-email@example.com">kalapodas@hotmail.com</a></p>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-globe"></i>
+            <p>Website: <a href="https://kalapodasportfolio.com" target="_blank">kalapodasportfolio.com</a></p>
+        </div>
+        <div class="contact-item">
+            <i class="fab fa-linkedin"></i>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/dimitris-kalapodas-76a322187" target="_blank">Link</a></p>
         </div>
     </div>
+    
+    <img src="mem-face.png" alt="Shape Image" class="bottom-right-image">
+    
+
 </div>
+
 
 @code {
     private string name;
@@ -70,17 +73,21 @@
         email = string.Empty;
         message = string.Empty;
     }
+
 }
 
 <style>
     .contact-container {
-        max-width: 800px;
         margin: 2em auto;
-        padding: 2em;
-        background-color: #333;
+        padding-left: 12em;
+        padding-right: 12em;
         color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        width: 100vw;
+        justify-content: space-between;
+        display: flex;
+        
+        
+        gap: 2em;
     }
 
     h2 {
@@ -102,15 +109,31 @@
     }
 
     .contact-details-section {
-        width: 300px; /* Fixed width for contact details */
-        background-color: #f0f0f0; /* Light gray background */
+        width: 300px;
+        background-color: inherit;
         padding: 1.5em;
-        border-radius: 8px;
-        color: #333; /* Dark text color for readability */
+        /*border-radius: 8px;*/
+        color: #fff;
+    }
+
+    .bottom-right-image {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 400px;
+        height: auto;
+    }
+    
+    .left-side-image {
+        position: absolute;
+        left: 0;
+        top: 20%;
+        width: 300px;
+        height: auto;
     }
 
     .contact-item {
-        margin: 1em 0;
+        margin: 0.1em 0;
         display: flex;
         align-items: center; /* Center icons vertically with text */
     }
@@ -121,6 +144,9 @@
         margin-right: 0.5em; /* Space between icon and text */
     }
 
+    .contact-item a {
+        color: #ffcc00;
+    }
     .contact-form {
         display: flex;
         flex-direction: column;
